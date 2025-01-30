@@ -63,7 +63,10 @@ If I Had More Time
 
 ## Final Monorepo Structure
 
-humble-superhero-monorepo/
+humble-superhero-monorepo
+```
+
+/
 ├── packages/
 │ ├── backend/
 │ │ ├── src/
@@ -77,7 +80,7 @@ humble-superhero-monorepo/
 ├── lerna.json
 ├── package.json
 ├── README.md
-Copy
+```
 
 ---
 
