@@ -1,18 +1,27 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { SuperheroesService } from './superheroes.service';
-import { Superhero } from 'shared';
+import { CreateSuperheroDto } from './superheros.dto';
 
 @Controller('superheroes')
 export class SuperheroesController {
   constructor(private readonly superheroesService: SuperheroesService) {}
 
   @Post()
-  addSuperhero(@Body() superhero: Omit<Superhero, 'id'>): Superhero {
-    return this.superheroesService.addSuperhero(superhero);
+  @UsePipes(new ValidationPipe({ transform: true }))
+  addSuperhero(@Body() createSuperheroDto: CreateSuperheroDto) {
+    return this.superheroesService.addSuperhero(createSuperheroDto);
   }
 
   @Get()
-  getAllSuperheroes(): Superhero[] {
+  getAllSuperheroes() {
     return this.superheroesService.getAllSuperheroes();
   }
 }
